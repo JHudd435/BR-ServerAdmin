@@ -14,6 +14,7 @@ bannedVehicles = []
 lastLine = ""  # Declare lastLine globally so it persists between loop iterations
 
 # init
+base_dir = os.path.dirname(os.path.abspath(__file__))
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 CHANNEL_ID = os.getenv('CHANNEL')  # Ensure this matches your Discord channel ID
@@ -21,12 +22,17 @@ CHANNEL_ID = os.getenv('CHANNEL')  # Ensure this matches your Discord channel ID
 intents = discord.Intents.default()
 client = commands.Bot(command_prefix='!', intents=intents)
 
-csvpath = "./textfiles/strikes.csv"
+
+
+csvpath = os.path.join(base_dir, '..', 'textfiles', 'strikes.csv')
 winUser = os.getlogin()
 
 
 # Load banned vehicles
-banned = open("./textfiles/banned_vehicles.txt", encoding="utf-8", mode="r")
+
+path = os.path.join(base_dir, '..', 'textfiles', 'banned_vehicles.txt')
+
+banned = open(path, encoding="utf-8", mode="r")
 bannedlines = banned.readlines()
 banned.close()
 for line in bannedlines:

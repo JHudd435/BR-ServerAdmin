@@ -32,7 +32,7 @@ async def start_bot(ctx, *, state: str):
         if state == "on":
             if br_bot_process is None:
                 # Start BR-Bot as a subprocess
-                br_bot_process = subprocess.Popen(['python', './bin/autmod.py'])
+                br_bot_process = subprocess.Popen(['python', 'br_bot.py'])
                 await ctx.send("BR-Bot started.")
             else:
                 await ctx.send("BR-Bot is already running.")
@@ -58,7 +58,7 @@ async def start_bot(ctx, *, state: str):
         if state == "on":
             if br_bot_process is None:
                 # Start AutoMod as a subprocess
-                br_bot_process = subprocess.Popen(['python', './bin/automod.py'])
+                br_bot_process = subprocess.Popen(['python', 'automod.py'])
                 await ctx.send("AutoMod started.")
             else:
                 await ctx.send("AutoMod is already running.")
