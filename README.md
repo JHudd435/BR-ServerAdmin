@@ -2,7 +2,7 @@
 Administrative system for the game brick rigs
 
 # Install
-First, follow this guide until the end of the "Creating an Application" section.
+First, follow this guide until the end of the "Creating an Application" section: https://realpython.com/how-to-make-a-discord-bot-python/
 
 Download the release or source from this github.
 
