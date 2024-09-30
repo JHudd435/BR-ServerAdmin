@@ -16,6 +16,7 @@ bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 
 # Store the process globally to allow stopping later
 br_bot_process = None
+automod_process = None
 
 # Ping up
 @bot.event
@@ -53,21 +54,21 @@ async def start_bot(ctx, *, state: str):
 @bot.command(name='automod', help="Starts up automod")
 @commands.has_role('Bot Admin')
 async def start_bot(ctx, *, state: str):
-    global br_bot_process
+    global automod_process
     try:
         if state == "on":
-            if br_bot_process is None:
+            if automod_process is None:
                 # Start AutoMod as a subprocess
-                br_bot_process = subprocess.Popen(['python', 'automod.py'])
+                automod_process = subprocess.Popen(['python', 'automod.py'])
                 await ctx.send("AutoMod started.")
             else:
                 await ctx.send("AutoMod is already running.")
         elif state == "off":
-            if br_bot_process is not None:
+            if automod_process is not None:
                 # Terminate the AutoMod subprocess
-                br_bot_process.terminate()  # Gracefully terminate
-                br_bot_process.wait()  # Wait for process to terminate
-                br_bot_process = None
+                automod_process.terminate()  # Gracefully terminate
+                automod_process.wait()  # Wait for process to terminate
+                automod_process = None
                 await ctx.send("AutoMod stopped.")
             else:
                 await ctx.send("AutoMod is not running.")
