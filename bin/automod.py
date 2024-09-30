@@ -211,7 +211,7 @@ async def monitor_logs():
 async def on_ready():
     print(f'Logged in as {client.user}')
     channel = client.get_channel(int(CHANNEL_ID))
-    await channel.send("AutoMod 2024, Jhudd073. AutoMod is now online.")
+    await channel.send("AutoMod 1.0 2024, Jhudd073. AutoMod is now online.")
     monitor_logs.start()
 
 # Start the bot

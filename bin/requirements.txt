@@ -1,0 +1,5 @@
+discord.py
+dotenv
+pyautogui
+signal
+subprocess

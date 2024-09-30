@@ -9,7 +9,7 @@ import signal
 # Init
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-CHANNEL_ID = 1247894755380297791  # Ensure this matches your Discord channel ID
+CHANNEL_ID = os.getenv('CHANNEL')  # Ensure this matches your Discord channel ID
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
@@ -21,7 +21,7 @@ br_bot_process = None
 @bot.event
 async def on_ready():
     channel = bot.get_channel(int(CHANNEL_ID))
-    await channel.send("BRSA Started.\nTo start BR-Bot, use !startbot on. To start automod, use !automod on. Use off instead of on to shut it off.")
+    await channel.send("BRSA 1.0 Started.\nTo start BR-Bot, use !startbot on. To start automod, use !automod on. Use off instead of on to shut it off.")
 
 # Commands
 @bot.command(name='startbot', help="Starts up BR-Bot")

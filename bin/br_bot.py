@@ -30,7 +30,7 @@ signal.signal(signal.SIGTERM, handle_termination)
 @bot.event
 async def on_ready():
     channel = bot.get_channel(int(CHANNEL))
-    await channel.send("BR-BOT 2024, Jhudd073. Bot is now online.")
+    await channel.send("BR-BOT 2.0 2024, Jhudd073. Bot is now online.")
 
 # Vars
 
@@ -193,10 +193,10 @@ async def weather(ctx, *, weather:str):
 # ban command
 @bot.command(name='banid', help="Bans a user by their steam64 ID")
 @commands.has_role('Bot Admin')
-async def banid(ctx, id: str, length:str, reason:str="Default Reason."):
+async def banid(ctx, id: str, length:"10", reason:str="Default Reason."):
     guild = ctx.guild
-    user = imports.getSteamUser(id)
-    username = user['player']['personaname']
+    #user = imports.getSteamUser(id)
+    #username = user['player']['personaname']
     pyautogui.press('esc')
     for i in range(3):
         pyautogui.press('tab')
@@ -223,7 +223,7 @@ async def banid(ctx, id: str, length:str, reason:str="Default Reason."):
         pyautogui.press('enter')
         pyautogui.press('esc')
         pyautogui.press('esc')
-        await ctx.send(f"{id} AKA {username} banned for 10 minutes, reason {reason}")
+        await ctx.send(f"{id} banned for 10 minutes, reason {reason}")
     elif(length=='inf'):
         for i in range(6):
             pyautogui.press('tab')
@@ -233,7 +233,7 @@ async def banid(ctx, id: str, length:str, reason:str="Default Reason."):
         pyautogui.press('enter')
         pyautogui.press('esc')
         pyautogui.press('esc')
-        await ctx.send(f"{id} AKA {username} banned for infinity, reason {reason}")
+        await ctx.send(f"{id} banned for infinity, reason {reason}")
     else:
         await ctx.send("At this time, banning someone for a time other than 10 or inf is not supported.")
 

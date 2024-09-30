@@ -1,2 +1,0 @@
-[brsa-config]
-automod = False
