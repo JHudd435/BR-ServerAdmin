@@ -377,11 +377,22 @@ async def weather(ctx, *, weather: str):
     else:
         await ctx.send("Weather changed")
 
-
+reasons_ban = """ 
+1:Lag.
+2:OP vehicle.
+3:Armed UV.
+4:Hypermanuverable.
+5:Stacked cannon/launcher.
+6:Racism/Slurs.
+7:Spawnkill.
+8:Stalling.
+9:Grave spotting.
+10:General reason.
+"""
 # Ban Command
-@bot.command(name="banid", help="Bans a user by their steam64 ID")
+@bot.command(name="banid", help="Bans a user by their steam64 ID. Put the applicable number as reason."+reasons_ban)
 @commands.has_role("Bot Admin")
-async def banid(ctx, id: str, length: str = "10", *, reason: str = None):
+async def banid(ctx, id: str, length: str = "10", *, reason: str = "10"):
 
     guild = ctx.guild
     if id != "76561199656519803":
@@ -394,7 +405,7 @@ async def banid(ctx, id: str, length: str = "10", *, reason: str = None):
         )
 
 
-@bot.command(name="ban", help="Bans a user by their name")
+@bot.command(name="ban", help="Bans a user by their name. Put the applicable number as reason."+reasons_ban)
 @commands.has_role("Bot Admin")
 async def ban(ctx, id: str, length: str = "10", *, reason: str = None):
 
