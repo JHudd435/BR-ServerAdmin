@@ -2,7 +2,7 @@
 Administrative system for the game brick rigs
 
 # Install
-First, follow this guide until the end of the "Creating an Application" section: https://realpython.com/how-to-make-a-discord-bot-python/
+~~First, follow this guide until the end of the "Creating an Application" section: https://realpython.com/how-to-make-a-discord-bot-python/
 
 Download the release or source from this github.
 
@@ -41,4 +41,4 @@ To activate automod, which automatically warns and then bans users who spawn veh
 
 `!hardrestart` : Kills the server and starts it again. Useful if the server is crashed.
 
-`!settime time`: Sets the time. Use whole numbers, 24 hr time. As is 12, 24, 10. Not as in 12:30, 1:30, etc.
+`!settime time`: Sets the time. Use whole numbers, 24 hr time. As is 12, 24, 10. Not as in 12:30, 1:30, etc.~~
