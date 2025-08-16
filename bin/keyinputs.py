@@ -168,51 +168,70 @@ async def setweather(weather):
     else:
         return "Invalid_Weather"
 
+reasons={
+    "1":"Lag.",
+    "2":"OP vehicle.",
+    "3":"Armed UV.",
+    "4":"Hypermanuverable.",
+    "5":"Stacked cannon/launcher",
+    "6":"Racism/Slurs",
+    "7":"Spawnkill",
+    "8":"Stalling",
+    "9":"Grave spotting",
+    "10":"General reason."
+}
+def getreason(reasonnum):
+    return reasons.get(reasonnum,None)
 
 async def banid(id, length, reason):
-    if length not in ("10", "inf"):
-        return "At this time, banning someone for a time other than 10 or inf is not supported."
+    if getreason(reason) != None:
+        reason = "Bot Ban: " + getreason(reason)
 
-    pyautogui.press("esc")
-    for i in range(3):
-        pyautogui.press("tab")
-        time.sleep(0.1)
-    pyautogui.press("enter")
-    for i in range(2):
-        pyautogui.press("tab")
-        time.sleep(0.1)
-    pyautogui.press("enter")
-    pyautogui.press("tab")
-    pyautogui.press("enter")
-    pyautogui.typewrite(str(id))
-    pyautogui.press("enter")
-    for i in range(5):
-        pyautogui.press("tab")
-        time.sleep(0.1)
-    pyautogui.press("enter")
-    pyautogui.typewrite(reason)
-    pyautogui.press("enter")
+        if length not in ("10", "inf"):
+            return "At this time, banning someone for a time other than 10 or inf is not supported."
 
-    if length == "10":
-        for i in range(7):
+        pyautogui.press("esc")
+        for i in range(3):
             pyautogui.press("tab")
             time.sleep(0.1)
         pyautogui.press("enter")
-        pyautogui.press("esc")
-        pyautogui.press("esc")
-        return f"{id} banned for 10 minutes, reason {reason}"
-    elif length == "inf":
-        for i in range(6):
+        for i in range(2):
             pyautogui.press("tab")
             time.sleep(0.1)
         pyautogui.press("enter")
         pyautogui.press("tab")
         pyautogui.press("enter")
-        pyautogui.press("esc")
-        pyautogui.press("esc")
-        return f"{id} banned for infinity, reason {reason}"
+        pyautogui.typewrite(str(id))
+        pyautogui.press("enter")
+        for i in range(5):
+            pyautogui.press("tab")
+            time.sleep(0.1)
+        pyautogui.press("enter")
+        pyautogui.typewrite(reason)
+        pyautogui.press("enter")
+
+        if length == "10":
+            for i in range(7):
+                pyautogui.press("tab")
+                time.sleep(0.1)
+            pyautogui.press("enter")
+            pyautogui.press("esc")
+            pyautogui.press("esc")
+            return f"{id} banned for 10 minutes, reason {reason}"
+        elif length == "inf":
+            for i in range(6):
+                pyautogui.press("tab")
+                time.sleep(0.1)
+            pyautogui.press("enter")
+            pyautogui.press("tab")
+            pyautogui.press("enter")
+            pyautogui.press("esc")
+            pyautogui.press("esc")
+            return f"{id} banned for infinity, reason {reason}"
+        else:
+            return "At this time, banning someone for a time other than 10 or inf is not supported."
     else:
-        return "At this time, banning someone for a time other than 10 or inf is not supported."
+        return "Please use a number from the selection. Use !help banid or !help ban for more info."
 
 
 async def settime(timesetting):

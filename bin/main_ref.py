@@ -416,10 +416,25 @@ async def ban(ctx, id: str, length: str = "10", *, reason: str = None):
 # Unban command
 @bot.command(name="unban", help="Unbans a user by their steam64 ID")
 @commands.has_role("Bot Admin")
-async def unban(ctx, id: str):
 
-    await keyinputs.unban(id)
-    await ctx.send(f"{id} unbanned")
+async def unban(ctx, id: str):
+    if not id.isdigit():
+        try:
+            id = await asyncio.to_thread(find_player_by_name, id)
+            if not id:
+                await ctx.send("Player not found.")
+                return
+        except Exception as e:
+            print(f"Error finding player: {e}")
+            await ctx.send("Could not resolve player name.")
+            return
+
+    try:
+        await keyinputs.unban(id)
+        await ctx.send(f"{id} unbanned")
+    except Exception as e:
+        print(f"Error unbanning: {e}")
+        await ctx.send("Failed to unban player.")
 
 
 # Hard restart command
