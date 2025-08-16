@@ -15,6 +15,7 @@ import keyinputs
 import schedule
 import asyncio
 import psutil
+import sys
 
 # Variables
 load_dotenv()
@@ -423,6 +424,25 @@ async def ban(ctx, id: str, length: str = "10", *, reason: str = None):
     else:
         await ctx.send("Could not find player name.")
 
+@bot.command(name="botreload",help="Reboots the bot")
+@commands.has_role("Bot Admin")
+async def botreload(ctx):
+    os.execl(sys.executable, sys.executable, *sys.argv)
+
+@bot.command(name="bl",help="Adds blacklisted vehicle by name")
+@commands.has_role("Bot Admin Rank II")
+async def bl_add(ctx, *, message: str):
+    try:
+        with open(banned_path, "a") as myfile:
+            myfile.write("\n"+message)
+            await ctx.send("Added "+message+" to blacklist")
+    except Exception as e:
+        await ctx.send(e)
+
+@bot.command(name="bl-list",help="Lists blacklisted vehicles")
+@commands.has_role("Bot Admin")
+async def bl_list(ctx):
+    await ctx.send(bannedVehicles)
 
 # Unban command
 @bot.command(name="unban", help="Unbans a user by their steam64 ID")
