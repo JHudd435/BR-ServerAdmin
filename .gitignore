@@ -30,6 +30,9 @@ include/
 pyvenv.cfg
 training/
 old/
+players.png
+screen.png
+testbench.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

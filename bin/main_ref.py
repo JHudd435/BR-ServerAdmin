@@ -394,20 +394,23 @@ async def banid(ctx, id: str, length: str = "10", *, reason: str = None):
         )
 
 
-@bot.command(name="ban", help="Bans a user by their steam64 ID")
+@bot.command(name="ban", help="Bans a user by their name")
 @commands.has_role("Bot Admin")
 async def ban(ctx, id: str, length: str = "10", *, reason: str = None):
 
     guild = ctx.guild
     idname = find_player_by_name(id)
-    if idname != "76561199656519803":
-        ban_response = await keyinputs.banid(idname, length, reason)
-        await ctx.send(ban_response)
-    else:
+    if idname =="76561199656519803":
         await ctx.send(
             ctx.author.mention
             + " You attempted to ban Jhudd the Magnificent, the Immortal, the Incredible. Refrain from doing so. "
         )
+        
+    elif idname != None:
+        ban_response = await keyinputs.banid(idname, length, reason)
+        await ctx.send(ban_response)
+    else:
+        await ctx.send("Could not find player name.")
 
 
 # Unban command
