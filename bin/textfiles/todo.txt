@@ -1,0 +1,4 @@
+Improve async
+Detailed logging
+Times joined
+EOD report
